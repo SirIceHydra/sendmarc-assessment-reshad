@@ -1,0 +1,70 @@
+version: "1.0"
+
+brand_voice:
+  tone:
+    - authoritative
+    - clear
+    - technical_but_accessible
+    - confident
+    - helpful
+  
+  avoid:
+    - overly_casual_language
+    - jargon_without_explanation
+    - fear_mongering
+    - sales_heavy_language
+    - buzzword_overload
+
+writing_principles:
+  - "Technical accuracy is paramount"
+  - "Explain acronyms on first use"
+  - "Use concrete examples from real-world scenarios"
+  - "Provide actionable takeaways"
+  - "Balance technical depth with accessibility"
+  - "Show DMARC expertise without being condescending"
+
+content_structure:
+  introduction:
+    - hook_with_relevant_problem
+    - state_what_reader_will_learn
+    - establish_sendmarc_expertise
+  
+  body:
+    - logical_progression
+    - clear_section_breaks
+    - examples_for_complex_concepts
+    - practical_applications
+  
+  conclusion:
+    - summarize_key_points
+    - provide_clear_next_steps
+    - soft_cta_to_sendmarc_resources
+
+topics_of_expertise:
+  - DMARC_implementation
+  - email_authentication
+  - SPF_and_DKIM
+  - phishing_prevention
+  - domain_spoofing
+  - email_security_best_practices
+  - threat_intelligence
+  - compliance_and_regulations
+
+competitor_sources:
+  high_risk:
+    - nytimes.com
+    - wsj.com
+    - forbes.com
+    - wired.com
+    - techcrunch.com
+  
+  medium_risk:
+    - medium.com
+    - linkedin.com
+    - industry_news_sites
+  
+  low_risk:
+    - competitor_blogs
+    - technical_documentation
+    - open_source_projects
+

@@ -1,0 +1,87 @@
+<!-- Jinja2 Template for Sendmarc Blog Articles -->
+<!-- This template is used by stage8_format.py -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Sendmarc Blog</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="{{ meta_description }}">
+    <meta name="author" content="Sendmarc">
+    <meta name="keywords" content="{{ keywords }}">
+    
+    <!-- OpenGraph Tags -->
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ meta_description }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://sendmarc.com/blog/{{ slug }}">
+    <meta property="og:site_name" content="Sendmarc">
+    <meta property="og:image" content="https://sendmarc.com/images/blog/{{ slug }}.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sendmarc">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ meta_description }}">
+    <meta name="twitter:image" content="https://sendmarc.com/images/blog/{{ slug }}.jpg">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ title }}",
+        "description": "{{ meta_description }}",
+        "image": "https://sendmarc.com/images/blog/{{ slug }}.jpg",
+        "author": {
+            "@type": "Organization",
+            "name": "Sendmarc"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Sendmarc",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://sendmarc.com/logo.png"
+            }
+        },
+        "datePublished": "{{ date_published }}",
+        "dateModified": "{{ date_modified }}"
+    }
+    </script>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>{{ title }}</h1>
+            <div class="meta-info">
+                <span class="author">By Sendmarc</span>
+                <span class="date">{{ date }}</span>
+            </div>
+        </header>
+        
+        <div class="article-content">
+            {{ content|safe }}
+        </div>
+        
+        {% if internal_links %}
+        <aside class="related-content">
+            <h3>Related Resources</h3>
+            <ul>
+            {% for link in internal_links %}
+                <li><a href="{{ link.url }}{{ link.utm_params }}">{{ link.text }}</a></li>
+            {% endfor %}
+            </ul>
+        </aside>
+        {% endif %}
+        
+        <footer class="article-footer">
+            <p>Ready to protect your domain? <a href="https://sendmarc.com/get-started">Get started with Sendmarc</a></p>
+        </footer>
+    </article>
+</body>
+</html>
+

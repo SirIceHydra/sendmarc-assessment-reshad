@@ -1,0 +1,15 @@
+google-generativeai==0.3.1
+sentence-transformers==2.2.2
+chromadb==0.4.22
+trafilatura==1.6.2
+requests==2.31.0
+beautifulsoup4==4.12.2
+markdown==3.5.1
+jinja2==3.1.2
+textstat==0.7.3
+streamlit==1.29.0
+pandas==2.1.4
+numpy==1.26.2
+python-dotenv==1.0.0
+pyyaml==6.0.1
+

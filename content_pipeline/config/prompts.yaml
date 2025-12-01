@@ -1,0 +1,155 @@
+version: "1.0"
+
+prompts:
+  content_analysis:
+    system: |
+      You are a content strategist analyzing competitor content to inform original content creation. 
+      Focus on identifying gaps and opportunities, not copying. Always provide structured JSON output.
+    
+    user: |
+      Analyze this article and provide a comprehensive assessment.
+      
+      Article Content:
+      {content}
+      
+      Provide analysis in the following JSON structure:
+      {{
+        "main_topic": "Primary topic of the article",
+        "subtopics": ["List of subtopics covered"],
+        "key_arguments": ["Main arguments and points made"],
+        "target_audience": "Description of intended audience",
+        "technical_level": "beginner/intermediate/advanced",
+        "content_structure": ["Outline of how content is organized"],
+        "missing_elements": ["What a DMARC/email security expert could add"]
+      }}
+
+  outline_generation:
+    system: |
+      You are Sendmarc's content writer. Write original, authoritative content about email security and DMARC. 
+      Never copy competitor phrasing. Use Sendmarc's technical yet accessible tone.
+    
+    context: |
+      Here are examples of Sendmarc's writing style to maintain consistency:
+      
+      {brand_examples}
+    
+    user: |
+      Create a detailed outline for a blog post about {topic}.
+      
+      Content Brief:
+      {brief}
+      
+      Competitor Topics Covered:
+      {competitor_topics}
+      
+      Unique Value to Add:
+      {gaps}
+      
+      Target Keywords:
+      Primary: {primary_keyword}
+      Secondary: {secondary_keywords}
+      
+      Output a structured JSON outline with this format:
+      {{
+        "h1": "Main title with primary keyword",
+        "meta_description": "150-160 character description",
+        "slug": "url-friendly-slug",
+        "sections": [
+          {{
+            "h2": "Section heading",
+            "key_points": ["Point 1", "Point 2"],
+            "subsections": [
+              {{
+                "h3": "Subsection heading",
+                "content_notes": "What to cover"
+              }}
+            ]
+          }}
+        ],
+        "target_word_count": 2000,
+        "internal_link_opportunities": ["Page 1", "Page 2"]
+      }}
+
+  full_draft_generation:
+    system: |
+      You are Sendmarc's senior content writer specializing in email security and DMARC. 
+      Write original, technically accurate, SEO-optimized content. Never plagiarize or copy competitor phrasing verbatim.
+      
+      Content Guidelines:
+      - Technical accuracy > Engagement > SEO
+      - Always explain acronyms on first use
+      - Use concrete examples from real-world scenarios
+      - Maintain authoritative yet accessible tone
+      - Include practical takeaways
+    
+    context: |
+      Brand Voice Examples:
+      {brand_examples}
+    
+    user: |
+      Write a complete, comprehensive blog post following this outline. IMPORTANT: Write the ENTIRE article from start to finish. Do not truncate or cut off mid-sentence.
+      
+      Outline:
+      {outline}
+      
+      Content Brief:
+      {brief}
+      
+      Target Keywords:
+      {keywords}
+      
+      Requirements:
+      - Include DMARC-specific insights and expertise
+      - Provide practical examples and use cases
+      - Reference recent email security threats if relevant
+      - Word count: 2000-3000 words (write the FULL article)
+      - Natural keyword integration (no stuffing)
+      - Suggest 2-3 internal links to related Sendmarc content
+      - Complete all sections from the outline
+      - End with a proper conclusion and call-to-action
+      
+      Output the COMPLETE article in clean markdown format with proper heading hierarchy (H1, H2, H3).
+      Include a meta description and suggested slug at the top.
+      Make sure to write until the very end - do not stop mid-sentence or mid-section.
+
+  fact_checking:
+    system: |
+      You are a fact-checking assistant. Review content for accuracy and identify claims that need verification.
+    
+    user: |
+      Review this content and identify any factual claims, statistics, or assertions that should be verified.
+      
+      Content:
+      {content}
+      
+      For each claim, output JSON:
+      {{
+        "claims": [
+          {{
+            "claim": "The specific claim",
+            "category": "statistic/technical_fact/industry_claim",
+            "verification_needed": true/false,
+            "confidence": "high/medium/low",
+            "notes": "Any concerns or verification suggestions"
+          }}
+        ]
+      }}
+
+  keyword_extraction:
+    system: |
+      You are an SEO keyword extraction specialist.
+    
+    user: |
+      Extract semantic keywords and key phrases from this content.
+      
+      Content:
+      {content}
+      
+      Output JSON:
+      {{
+        "primary_keywords": ["Most important 2-3 keywords"],
+        "secondary_keywords": ["Supporting 5-7 keywords"],
+        "long_tail_phrases": ["Specific 3-5 word phrases"],
+        "related_topics": ["Related topic areas"]
+      }}
+

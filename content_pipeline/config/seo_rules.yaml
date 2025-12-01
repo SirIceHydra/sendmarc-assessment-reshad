@@ -1,0 +1,94 @@
+version: "1.0"
+
+thresholds:
+  word_count:
+    min: 1500
+    max: 3000
+    ideal: 2000
+  
+  readability:
+    flesch_reading_ease:
+      min: 30
+      max: 80
+      ideal_min: 50
+      ideal_max: 70
+  
+  keyword_density:
+    primary:
+      min: 0.005  # 0.5%
+      max: 0.025  # 2.5%
+      ideal: 0.015  # 1.5%
+    secondary:
+      min: 0.003  # 0.3%
+      max: 0.015  # 1.5%
+  
+  meta_description:
+    min_length: 150
+    max_length: 160
+  
+  internal_links:
+    min: 2
+    ideal: 3
+  
+  heading_structure:
+    require_h1: true
+    min_h2_sections: 3
+    max_h2_sections: 7
+
+validation_rules:
+  blocking:
+    - missing_h1
+    - missing_meta_description
+    - readability_too_low  # < 30
+    - readability_too_high  # > 80
+    - no_primary_keyword_in_h1
+    - no_primary_keyword_in_intro
+  
+  warning:
+    - word_count_below_min
+    - word_count_above_max
+    - keyword_density_low
+    - keyword_density_high
+    - insufficient_internal_links
+    - readability_suboptimal
+    - too_few_h2_sections
+    - too_many_h2_sections
+
+scoring:
+  weights:
+    keyword_optimization: 0.25
+    readability: 0.20
+    structure: 0.20
+    content_length: 0.15
+    internal_linking: 0.10
+    meta_optimization: 0.10
+  
+  keyword_optimization:
+    primary_in_h1: 20
+    primary_in_intro: 15
+    primary_density_ideal: 25
+    secondary_presence: 20
+    natural_distribution: 20
+  
+  readability:
+    flesch_score_ideal: 50
+    avg_sentence_length: 25
+    paragraph_structure: 25
+  
+  structure:
+    h1_present: 30
+    h2_count_ideal: 30
+    heading_hierarchy: 40
+  
+  content_length:
+    meets_minimum: 50
+    in_ideal_range: 50
+  
+  internal_linking:
+    has_minimum: 50
+    has_ideal: 50
+  
+  meta_optimization:
+    description_length: 50
+    description_includes_keyword: 50
+
