@@ -45,9 +45,9 @@ data/extractions/
 data/drafts/
 data/outputs/
 data/fingerprints/
-# Keep sendmarc_blogs structure but ignore content
-data/sendmarc_blogs/*
-!data/sendmarc_blogs/.gitkeep
+# Keep sendmarc_blogs structure
+# data/sendmarc_blogs/*
+# !data/sendmarc_blogs/.gitkeep
 
 # Logs
 *.log
