@@ -210,18 +210,16 @@ def count_words(text: str) -> int:
     return len(words)
 
 
-def extract_headings(html: str) -> Dict[str, List[str]]:
+def extract_headings(content: str) -> Dict[str, List[str]]:
     """
-    Extract all headings from HTML
+    Extract all headings from content (supports both Markdown and HTML)
     
     Args:
-        html: HTML content
+        content: Markdown or HTML content
         
     Returns:
         Dictionary mapping heading levels to list of heading texts
     """
-    soup = BeautifulSoup(html, 'html.parser')
-    
     headings = {
         'h1': [],
         'h2': [],
@@ -231,8 +229,30 @@ def extract_headings(html: str) -> Dict[str, List[str]]:
         'h6': []
     }
     
-    for level in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
-        headings[level] = [h.get_text().strip() for h in soup.find_all(level)]
+    # First, try to extract Markdown headings (# syntax)
+    lines = content.split('\n')
+    for line in lines:
+        line = line.strip()
+        if line.startswith('#'):
+            # Count the number of # symbols
+            level = 0
+            for char in line:
+                if char == '#':
+                    level += 1
+                else:
+                    break
+            
+            if 1 <= level <= 6:
+                # Extract heading text (remove # and leading/trailing whitespace)
+                heading_text = line[level:].strip()
+                if heading_text:
+                    headings[f'h{level}'].append(heading_text)
+    
+    # If no Markdown headings found, try HTML
+    if all(len(h) == 0 for h in headings.values()):
+        soup = BeautifulSoup(content, 'html.parser')
+        for level in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+            headings[level] = [h.get_text().strip() for h in soup.find_all(level)]
     
     return headings
 

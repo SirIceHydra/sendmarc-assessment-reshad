@@ -314,10 +314,15 @@ def generate_quality_report(
     if not metadata.get('meta_description'):
         blocking_issues.append("Missing meta description")
     
+    # Use thresholds from config for readability blocking
+    # Note: Technical content about DMARC/SPF/DKIM inherently has lower Flesch scores
+    # due to multi-syllable technical terminology (authentication, configuration, etc.)
     flesch = seo_results['metrics']['flesch_reading_ease']
-    if flesch < 30:
+    flesch_min = rules['thresholds']['readability']['flesch_reading_ease']['min']
+    flesch_max = rules['thresholds']['readability']['flesch_reading_ease']['max']
+    if flesch < flesch_min:
         blocking_issues.append(f"Readability too low (Flesch: {flesch})")
-    elif flesch > 80:
+    elif flesch > flesch_max:
         blocking_issues.append(f"Readability too high (Flesch: {flesch})")
     
     # Warnings

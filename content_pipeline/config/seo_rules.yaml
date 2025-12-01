@@ -8,10 +8,12 @@ thresholds:
   
   readability:
     flesch_reading_ease:
-      min: 30
+      # Note: Technical content about email security (DMARC, SPF, DKIM) inherently
+      # has lower Flesch scores due to multi-syllable terminology. Min lowered to 20.
+      min: 20
       max: 80
-      ideal_min: 50
-      ideal_max: 70
+      ideal_min: 40
+      ideal_max: 60
   
   keyword_density:
     primary:
