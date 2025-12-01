@@ -2,9 +2,9 @@ version: "1.0"
 
 thresholds:
   word_count:
-    min: 1500
-    max: 3000
-    ideal: 2000
+    min: 1200
+    max: 3500
+    ideal: 1800
   
   readability:
     flesch_reading_ease:

@@ -169,10 +169,10 @@ def validate_draft(content: str, outline: Dict[str, Any]) -> tuple[bool, list]:
     
     # Word count check
     word_count = len(content.split())
-    if word_count < 1500:
-        issues.append(f"Content too short ({word_count} words, minimum 1500)")
-    elif word_count > 3000:  # Updated to match new max
-        issues.append(f"Content too long ({word_count} words, maximum 3000)")
+    if word_count < 1200:
+        issues.append(f"Content too short ({word_count} words, minimum 1200)")
+    elif word_count > 3500:
+        issues.append(f"Content too long ({word_count} words, maximum 3500)")
     
     # Check for H1
     if not content.strip().startswith('#'):

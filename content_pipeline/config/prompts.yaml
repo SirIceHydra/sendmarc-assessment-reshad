@@ -66,7 +66,7 @@ prompts:
             ]
           }}
         ],
-        "target_word_count": 2000,
+        "target_word_count": 1800,
         "internal_link_opportunities": ["Page 1", "Page 2"]
       }}
 
@@ -87,7 +87,7 @@ prompts:
       {brand_examples}
     
     user: |
-      Write a complete, comprehensive blog post following this outline. IMPORTANT: Write the ENTIRE article from start to finish. Do not truncate or cut off mid-sentence.
+      Write a complete, comprehensive blog post following this outline. IMPORTANT: Write the ENTIRE article from start to finish.
       
       Outline:
       {outline}
@@ -102,7 +102,8 @@ prompts:
       - Include DMARC-specific insights and expertise
       - Provide practical examples and use cases
       - Reference recent email security threats if relevant
-      - Word count: 2000-3000 words (write the FULL article)
+      - Word count: 1500-2000 words (concise and impactful)
+      - Readability: Use simple, clear English (Flesch Reading Ease 50-60). Short sentences. Short paragraphs.
       - Natural keyword integration (no stuffing)
       - Suggest 2-3 internal links to related Sendmarc content
       - Complete all sections from the outline
